@@ -10,25 +10,17 @@ class ScreenManager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: CustomAppBars.mainAppBar(context),
-        body: SafeArea(
-            child: Container(
-                child: Column(
-          children: [
-            Consumer<AuthenticationState>(
-                builder: (context, appState, _) => Authentication(
-                      email: appState.email,
-                      loginState: appState.loginState,
-                      startSignInFlow: appState.startSignInFlow,
-                      startSignUpFlow: appState.startSignUpFlow,
-                      signInWithEmailAndPassword:
-                          appState.signInWithEmailAndPassword,
-                      cancelRegistration: appState.cancelRegistration,
-                      registerAccount: appState.registerAccount,
-                      signOut: appState.signOut,
-                    )),
-          ],
-        ))));
+    return Consumer<AuthenticationState>(
+        builder: (context, appState, _) => Authentication(
+              email: appState.email,
+              loginState: appState.loginState,
+              startSignInFlow: appState.startSignInFlow,
+              startSignUpFlow: appState.startSignUpFlow,
+              signInWithEmailAndPassword: appState.signInWithEmailAndPassword,
+              cancelRegistration: appState.cancelRegistration,
+              registerAccount: appState.registerAccount,
+              signOut: appState.signOut,
+              getUser: appState.getUser,
+            ));
   }
 }

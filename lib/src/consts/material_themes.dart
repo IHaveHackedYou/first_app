@@ -3,7 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 ThemeData darkTheme() {
   final baseTheme = ThemeData.dark();
-  return baseTheme;/* .copyWith(
+  return baseTheme.copyWith(
+    textTheme: GoogleFonts.montserratTextTheme().apply(bodyColor: Color.fromARGB(255, 255, 255, 255))
+  );/* .copyWith(
       textTheme: GoogleFonts.robotoTextTheme(),
       scaffoldBackgroundColor: Color(0x30303030),
       primaryColor: Color(0xFFFFFFFF),

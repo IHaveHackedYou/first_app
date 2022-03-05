@@ -14,7 +14,7 @@ class AuthenticationState extends ChangeNotifier {
     // checks current user status
     FirebaseAuth.instance.userChanges().listen((user) {
       if (user != null) {
-        _loginState = ApplicationLoginState.loggedIn;
+        _loginState = ApplicationLoginState.loggedInMainPage;
       } else {
         _loginState = ApplicationLoginState.loggedOut;
       }
@@ -72,6 +72,10 @@ class AuthenticationState extends ChangeNotifier {
     } on FirebaseAuthException catch (e) {
       errorCallback(e);
     }
+  }
+
+  User? getUser(){
+    return FirebaseAuth.instance.currentUser;
   }
 
   void signOut() {

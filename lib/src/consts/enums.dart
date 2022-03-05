@@ -3,5 +3,6 @@ enum ApplicationLoginState {
   loggedOut,
   signIn,
   signUp,
-  loggedIn,
+  loggedInMainPage,
+  addTask
 }

@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_app/src/consts/enums.dart';
 import 'package:first_app/src/screens/authentication/authentication_input_forms.dart';
+import 'package:first_app/src/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 // import 'widgets.dart';
@@ -15,6 +17,7 @@ class Authentication extends StatelessWidget {
     required this.registerAccount,
     required this.signOut,
     required this.startSignInFlow,
+    required this.getUser,
   });
 
   final ApplicationLoginState loginState;
@@ -28,28 +31,31 @@ class Authentication extends StatelessWidget {
   final void Function(String email, String displayName, String password,
       void Function(Exception e) error) registerAccount;
   final void Function() signOut;
+  final User? Function() getUser;
 
   @override
   Widget build(BuildContext context) {
     switch (loginState) {
       case ApplicationLoginState.loggedOut:
-        return Container(
-          padding: const EdgeInsets.only(left: 24, bottom: 8),
-          child: Row(
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  startSignUpFlow();
-                },
-                child: const Text("SignUp"),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  startSignInFlow();
-                },
-                child: const Text("SignIn"),
-              ),
-            ],
+        return Scaffold(
+          body: Container(
+            padding: const EdgeInsets.only(left: 24, bottom: 8),
+            child: Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    startSignUpFlow();
+                  },
+                  child: const Text("SignUp"),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    startSignInFlow();
+                  },
+                  child: const Text("SignIn"),
+                ),
+              ],
+            ),
           ),
         );
 
@@ -83,26 +89,19 @@ class Authentication extends StatelessWidget {
             cancelRegistration();
           },
         );
-        
-      case ApplicationLoginState.loggedIn:
-        return Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 24, bottom: 8),
-              child: ElevatedButton(
-                onPressed: () {
-                  signOut();
-                },
-                child: const Text('LOGOUT'),
-              ),
-            ),
-          ],
+
+      case ApplicationLoginState.loggedInMainPage:
+        return HomeScreen(
+          signOut: signOut,
+          getUser: getUser,
         );
       default:
-        return Row(
-          children: const [
-            Text("Internal error, this shouldn't happen..."),
-          ],
+        return Scaffold(
+          body: Row(
+            children: const [
+              Text("Internal error, this shouldn't happen..."),
+            ],
+          ),
         );
     }
   }
@@ -131,10 +130,7 @@ class Authentication extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text(
-                'OK',
-                style: TextStyle(color: Colors.deepPurple),
-              ),
+              child: const Text('OK'),
             ),
           ],
         );
