@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 
 import 'authentication/authentication_screens.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class ScreenManager extends StatelessWidget {
+  const ScreenManager({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
             child: Container(
                 child: Column(
           children: [
-            Consumer<ApplicationState>(
+            Consumer<AuthenticationState>(
                 builder: (context, appState, _) => Authentication(
                       email: appState.email,
                       loginState: appState.loginState,

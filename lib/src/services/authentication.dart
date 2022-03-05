@@ -3,8 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:first_app/src/consts/enums.dart';
 import 'package:flutter/cupertino.dart';
 
-class ApplicationState extends ChangeNotifier {
-  ApplicationState() {
+class AuthenticationState extends ChangeNotifier {
+  AuthenticationState() {
     init();
   }
 

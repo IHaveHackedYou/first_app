@@ -1,3 +1,4 @@
+import 'package:first_app/src/consts/input_forms.dart';
 import "package:flutter/material.dart";
 
 
@@ -25,18 +26,6 @@ class _SignUpFormState extends State<SignUpForm> {
   final _displayNameController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  InputDecoration inputDecoration(IconData icon, String labelText) =>
-      InputDecoration(
-        prefixIcon: Icon(icon, color: Theme.of(context).colorScheme.primary),
-        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-        labelText: labelText,
-        fillColor: Theme.of(context).colorScheme.tertiary,
-        filled: true,
-        enabledBorder:
-            OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-      );
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -62,7 +51,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     }
                   },
                   controller: _emailController,
-                  decoration: inputDecoration(Icons.email, "Email"),
+                  decoration: InputDecorations.authenticationInputFormDecoration(Icons.email, "Email", context),
                 ),
                 SizedBox(
                   height: 10,
@@ -78,7 +67,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   },
                   controller: _passwordController,
                   obscureText: true,
-                  decoration: inputDecoration(Icons.vpn_key, "Password"),
+                  decoration: InputDecorations.authenticationInputFormDecoration(Icons.vpn_key, "Password", context),
                 ),
                 SizedBox(
                   height: 10,
@@ -93,7 +82,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     }
                   },
                   controller: _displayNameController,
-                  decoration: inputDecoration(Icons.person, "Name"),
+                  decoration: InputDecorations.authenticationInputFormDecoration(Icons.person, "Name", context),
                 ),
                 SizedBox(
                   height: 10,
@@ -149,18 +138,6 @@ class _SignInFormState extends State<SignInForm> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  InputDecoration inputDecoration(IconData icon, String labelText) =>
-      InputDecoration(
-        prefixIcon: Icon(icon, color: Theme.of(context).colorScheme.primary),
-        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-        labelText: labelText,
-        fillColor: Theme.of(context).colorScheme.tertiary,
-        filled: true,
-        enabledBorder:
-            OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-      );
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -186,7 +163,7 @@ class _SignInFormState extends State<SignInForm> {
                       }
                     },
                     controller: _emailController,
-                    decoration: inputDecoration(Icons.email, "Email"),
+                    decoration: InputDecorations.authenticationInputFormDecoration(Icons.email, "Email", context),
                   ),
                   SizedBox(
                     height: 10,
@@ -202,7 +179,7 @@ class _SignInFormState extends State<SignInForm> {
                     },
                     controller: _passwordController,
                     obscureText: true,
-                    decoration: inputDecoration(Icons.vpn_key, "Password"),
+                    decoration: InputDecorations.authenticationInputFormDecoration(Icons.vpn_key, "Password", context),
                   ),
                   SizedBox(
                     height: 10,

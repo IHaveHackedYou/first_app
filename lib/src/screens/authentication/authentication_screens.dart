@@ -1,5 +1,5 @@
 import 'package:first_app/src/consts/enums.dart';
-import 'package:first_app/src/screens/authentication/input_forms.dart';
+import 'package:first_app/src/screens/authentication/authentication_input_forms.dart';
 import 'package:flutter/material.dart';
 
 // import 'widgets.dart';
