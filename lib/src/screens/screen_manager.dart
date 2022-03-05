@@ -1,3 +1,4 @@
+import 'package:first_app/src/consts/custom_app_bar.dart';
 import 'package:first_app/src/services/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,10 +11,7 @@ class ScreenManager extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Servus leude"),
-          backgroundColor: Theme.of(context).colorScheme.secondary,
-        ),
+        appBar: CustomAppBars.mainAppBar(context),
         body: SafeArea(
             child: Container(
                 child: Column(

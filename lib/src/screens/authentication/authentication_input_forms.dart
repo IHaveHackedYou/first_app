@@ -1,7 +1,6 @@
 import 'package:first_app/src/consts/input_forms.dart';
 import "package:flutter/material.dart";
 
-
 class SignUpForm extends StatefulWidget {
   const SignUpForm(
       {Key? key,
@@ -10,8 +9,7 @@ class SignUpForm extends StatefulWidget {
       required this.changeToSignIn})
       : super(key: key);
 
-  final void Function(String email, String displayName, String password)
-      signUp;
+  final void Function(String email, String displayName, String password) signUp;
   final void Function() cancel;
   final void Function() changeToSignIn;
 
@@ -32,8 +30,7 @@ class _SignUpFormState extends State<SignUpForm> {
       margin: EdgeInsets.all(10),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
-          border: Border.all(
-              color: Theme.of(context).colorScheme.tertiary, width: 2),
+          border: Border.all(width: 2),
           borderRadius: BorderRadius.all(Radius.circular(5))),
       child: Column(children: [
         Text("Create Account"),
@@ -51,7 +48,9 @@ class _SignUpFormState extends State<SignUpForm> {
                     }
                   },
                   controller: _emailController,
-                  decoration: InputDecorations.authenticationInputFormDecoration(Icons.email, "Email", context),
+                  decoration:
+                      InputDecorations.authenticationInputFormDecoration(
+                          Icons.email, "Email", context),
                 ),
                 SizedBox(
                   height: 10,
@@ -67,7 +66,9 @@ class _SignUpFormState extends State<SignUpForm> {
                   },
                   controller: _passwordController,
                   obscureText: true,
-                  decoration: InputDecorations.authenticationInputFormDecoration(Icons.vpn_key, "Password", context),
+                  decoration:
+                      InputDecorations.authenticationInputFormDecoration(
+                          Icons.vpn_key, "Password", context),
                 ),
                 SizedBox(
                   height: 10,
@@ -82,18 +83,18 @@ class _SignUpFormState extends State<SignUpForm> {
                     }
                   },
                   controller: _displayNameController,
-                  decoration: InputDecorations.authenticationInputFormDecoration(Icons.person, "Name", context),
+                  decoration:
+                      InputDecorations.authenticationInputFormDecoration(
+                          Icons.person, "Name", context),
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    // TODO add sign in behavior
                     GestureDetector(
-                        child: Text("Sign in instead",
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor)),
+                        child: Text("Sign in instead"),
                         onTap: widget.changeToSignIn),
                     ElevatedButton(
                       onPressed: () {
@@ -123,7 +124,7 @@ class SignInForm extends StatefulWidget {
       required this.cancel,
       required this.changeToSignUp})
       : super(key: key);
-  
+
   final void Function(String email, String password) signIn;
   final void Function() cancel;
   final void Function() changeToSignUp;
@@ -144,8 +145,7 @@ class _SignInFormState extends State<SignInForm> {
         margin: EdgeInsets.all(10),
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-            border: Border.all(
-                color: Theme.of(context).colorScheme.tertiary, width: 2),
+            border: Border.all(width: 2),
             borderRadius: BorderRadius.all(Radius.circular(5))),
         child: Column(children: [
           Text("Create Account"),
@@ -163,7 +163,9 @@ class _SignInFormState extends State<SignInForm> {
                       }
                     },
                     controller: _emailController,
-                    decoration: InputDecorations.authenticationInputFormDecoration(Icons.email, "Email", context),
+                    decoration:
+                        InputDecorations.authenticationInputFormDecoration(
+                            Icons.email, "Email", context),
                   ),
                   SizedBox(
                     height: 10,
@@ -179,7 +181,9 @@ class _SignInFormState extends State<SignInForm> {
                     },
                     controller: _passwordController,
                     obscureText: true,
-                    decoration: InputDecorations.authenticationInputFormDecoration(Icons.vpn_key, "Password", context),
+                    decoration:
+                        InputDecorations.authenticationInputFormDecoration(
+                            Icons.vpn_key, "Password", context),
                   ),
                   SizedBox(
                     height: 10,
@@ -188,11 +192,12 @@ class _SignInFormState extends State<SignInForm> {
                     height: 10,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       GestureDetector(
-                          child: Text("Sign up instead",
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor)),
+                          child: Text(
+                            "Sign up instead",
+                          ),
                           onTap: widget.changeToSignUp),
                       ElevatedButton(
                         onPressed: () {
