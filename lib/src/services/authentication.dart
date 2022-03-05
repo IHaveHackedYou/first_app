@@ -40,25 +40,6 @@ class ApplicationState extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> verifyEmail(
-    String email,
-    void Function(FirebaseAuthException e) errorCallback,
-  ) async {
-    try {
-      var methods =
-          await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
-      if (methods.contains('password')) {
-        _loginState = ApplicationLoginState.password;
-      } else {
-        _loginState = ApplicationLoginState.register;
-      }
-      _email = email;
-      notifyListeners();
-    } on FirebaseAuthException catch (e) {
-      errorCallback(e);
-    }
-  }
-
   Future<void> signInWithEmailAndPassword(
     String email,
     String password,
@@ -75,7 +56,7 @@ class ApplicationState extends ChangeNotifier {
   }
 
   void cancelRegistration() {
-    _loginState = ApplicationLoginState.emailAddress;
+    _loginState = ApplicationLoginState.loggedOut;
     notifyListeners();
   }
 

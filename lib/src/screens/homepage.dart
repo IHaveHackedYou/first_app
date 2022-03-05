@@ -24,7 +24,6 @@ class HomePage extends StatelessWidget {
                       loginState: appState.loginState,
                       startSignInFlow: appState.startSignInFlow,
                       startSignUpFlow: appState.startSignUpFlow,
-                      verifyEmail: appState.verifyEmail,
                       signInWithEmailAndPassword:
                           appState.signInWithEmailAndPassword,
                       cancelRegistration: appState.cancelRegistration,
