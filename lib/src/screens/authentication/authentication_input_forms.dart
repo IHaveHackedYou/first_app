@@ -27,93 +27,103 @@ class _SignUpFormState extends State<SignUpForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        margin: EdgeInsets.all(10),
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-            border: Border.all(width: 2),
-            borderRadius: BorderRadius.all(Radius.circular(5))),
-        child: Column(children: [
-          Text("SignUp"),
-          Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  // Email field
-                  TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Please enter an email-address";
-                      } else {
-                        return null;
-                      }
-                    },
-                    controller: _emailController,
-                    decoration:
-                        InputDecorations.authenticationInputFormDecoration(
-                            Icons.email, "Email", context),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  // Password field
-                  TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Please enter a password";
-                      } else {
-                        return null;
-                      }
-                    },
-                    controller: _passwordController,
-                    obscureText: true,
-                    decoration:
-                        InputDecorations.authenticationInputFormDecoration(
-                            Icons.vpn_key, "Password", context),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  // Name Field
-                  TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Please enter a password";
-                      } else {
-                        return null;
-                      }
-                    },
-                    controller: _displayNameController,
-                    decoration:
-                        InputDecorations.authenticationInputFormDecoration(
-                            Icons.person, "Name", context),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      GestureDetector(
-                          child: Text("Sign in instead"),
-                          onTap: widget.changeToSignIn),
-                      ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            widget.signUp(
-                              _emailController.text,
-                              _displayNameController.text,
-                              _passwordController.text,
-                            );
-                          }
-                        },
-                        child: const Text('SAVE'),
-                      ),
-                    ],
-                  )
-                ],
-              ))
-        ]),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Container(
+                padding: EdgeInsets.only(top: 20),
+                child: Center(
+                  child: Text("Sign up", style: TextStyle(fontSize: 25)),
+                )),
+            Divider(
+              thickness: 2,
+            ),
+            Container(
+              margin: EdgeInsets.all(10),
+              padding: EdgeInsets.all(10),
+              child: Column(children: [
+                Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        // Email field
+                        TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Please enter an email-address";
+                            } else {
+                              return null;
+                            }
+                          },
+                          controller: _emailController,
+                          decoration: InputDecorations
+                              .authenticationInputFormDecoration(
+                                  Icons.email, "Email", context),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        // Password field
+                        TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Please enter a password";
+                            } else {
+                              return null;
+                            }
+                          },
+                          controller: _passwordController,
+                          obscureText: true,
+                          decoration: InputDecorations
+                              .authenticationInputFormDecoration(
+                                  Icons.vpn_key, "Password", context),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        // Name Field
+                        TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Please enter a password";
+                            } else {
+                              return null;
+                            }
+                          },
+                          controller: _displayNameController,
+                          decoration: InputDecorations
+                              .authenticationInputFormDecoration(
+                                  Icons.person, "Name", context),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            GestureDetector(
+                                child: Text("Sign in instead"),
+                                onTap: widget.changeToSignIn),
+                            ElevatedButton(
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  widget.signUp(
+                                    _emailController.text,
+                                    _displayNameController.text,
+                                    _passwordController.text,
+                                  );
+                                }
+                              },
+                              child: const Text('SAVE'),
+                            ),
+                          ],
+                        )
+                      ],
+                    ))
+              ]),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -144,80 +154,90 @@ class _SignInFormState extends State<SignInForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-          margin: EdgeInsets.all(10),
-          padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-              border: Border.all(width: 2),
-              borderRadius: BorderRadius.all(Radius.circular(5))),
-          child: Column(children: [
-            Text("Sign In"),
-            Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    // Email field
-                    TextFormField(
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Please enter an email-address";
-                        } else {
-                          return null;
-                        }
-                      },
-                      controller: _emailController,
-                      decoration:
-                          InputDecorations.authenticationInputFormDecoration(
-                              Icons.email, "Email", context),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    // Password field
-                    TextFormField(
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Please enter a password";
-                        } else {
-                          return null;
-                        }
-                      },
-                      controller: _passwordController,
-                      obscureText: true,
-                      decoration:
-                          InputDecorations.authenticationInputFormDecoration(
-                              Icons.vpn_key, "Password", context),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        GestureDetector(
-                            child: Text(
-                              "Sign up instead",
-                            ),
-                            onTap: widget.changeToSignUp),
-                        ElevatedButton(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              widget.signIn(
-                                _emailController.text,
-                                _passwordController.text,
-                              );
-                            }
-                          },
-                          child: const Text('SAVE'),
-                        ),
-                      ],
-                    )
-                  ],
-                ))
-          ])),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Container(
+                padding: EdgeInsets.only(top: 20),
+                child: Center(
+                  child: Text("Sign in", style: TextStyle(fontSize: 25)),
+                )),
+            Divider(
+              thickness: 2,
+            ),
+            Container(
+                margin: EdgeInsets.all(10),
+                padding: EdgeInsets.all(10),
+                child: Column(children: [
+                  Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          // Email field
+                          TextFormField(
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Please enter an email-address";
+                              } else {
+                                return null;
+                              }
+                            },
+                            controller: _emailController,
+                            decoration: InputDecorations
+                                .authenticationInputFormDecoration(
+                                    Icons.email, "Email", context),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          // Password field
+                          TextFormField(
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Please enter a password";
+                              } else {
+                                return null;
+                              }
+                            },
+                            controller: _passwordController,
+                            obscureText: true,
+                            decoration: InputDecorations
+                                .authenticationInputFormDecoration(
+                                    Icons.vpn_key, "Password", context),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              GestureDetector(
+                                  child: Text(
+                                    "Sign up instead",
+                                  ),
+                                  onTap: widget.changeToSignUp),
+                              ElevatedButton(
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    widget.signIn(
+                                      _emailController.text,
+                                      _passwordController.text,
+                                    );
+                                  }
+                                },
+                                child: const Text('SAVE'),
+                              ),
+                            ],
+                          )
+                        ],
+                      ))
+                ])),
+          ],
+        ),
+      ),
     );
   }
 }

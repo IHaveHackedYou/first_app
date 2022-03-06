@@ -27,6 +27,14 @@ class TodoList extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Text("Loading ...");
         }
+        if (snapshot.data!.docs.isEmpty) {
+          return Column(
+            children: [
+              Center(child: Text("\nnothing to show")),
+              Center(child: Text("add tasks with the button on the bottom left"))
+              ,
+            ]);
+        }
         return ListView(
           children: snapshot.data!.docs.map((DocumentSnapshot document) {
             Map<String, dynamic> data =
@@ -75,9 +83,10 @@ class _SingleTodoEntryState extends State<SingleTodoEntry> {
             onChanged: (bool? value) {
               setState(() {
                 widget.entry.checked = value!;
-                _timer = new Timer(const Duration(milliseconds: 400), ()=>widget.removeEntry(
-                  widget.entry, widget.getUser()!.uid.toString())); 
-                
+                _timer = Timer(
+                    const Duration(milliseconds: 600),
+                    () => widget.removeEntry(
+                        widget.entry, widget.getUser()!.uid.toString()));
               });
             }),
         Text(widget.entry.title)

@@ -1,8 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_app/src/consts/custom_app_bar.dart';
-import 'package:first_app/src/models/todo_entry.dart';
-import 'package:first_app/src/screens/todo_list/add_todo.dart';
 import 'package:first_app/src/screens/todo_list/todo_list.dart';
 import 'package:first_app/src/services/database.dart';
 import 'package:flutter/material.dart';
@@ -28,13 +25,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     //List<TodoEntry> _entries = List.empty(growable: true);
-    
-    
+
     final databaseProvider = Provider.of<Database>(context, listen: false);
-    final Stream<QuerySnapshot> _entryStream = databaseProvider.getDataStream(widget.getUser()!.uid.toString());
-      // databaseProvider.getEntriesFromDatabase(widget.getUser()!.uid.toString());
-      //_entries = await databaseProvider.getData(widget.getUser()!.uid.toString());
-      //print(_entries);
+    final Stream<QuerySnapshot> _entryStream =
+        databaseProvider.getDataStream(widget.getUser()!.uid.toString());
+    // databaseProvider.getEntriesFromDatabase(widget.getUser()!.uid.toString());
+    //_entries = await databaseProvider.getData(widget.getUser()!.uid.toString());
+    //print(_entries);
     //loadList();
     return Scaffold(
       //appBar: CustomAppBars.mainAppBar(context),
@@ -64,7 +61,13 @@ class _HomeScreenState extends State<HomeScreen> {
             Divider(
               thickness: 2,
             ),
-            Container(height: 200, child: TodoList(entryStream: _entryStream, removeEntry: databaseProvider.removeEntry, getUser: widget.getUser,))
+            Container(
+                height: 200,
+                child: TodoList(
+                  entryStream: _entryStream,
+                  removeEntry: databaseProvider.removeEntry,
+                  getUser: widget.getUser,
+                ))
           ],
         ),
       ),

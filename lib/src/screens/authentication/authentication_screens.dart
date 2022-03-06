@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_app/src/consts/enums.dart';
 import 'package:first_app/src/screens/authentication/authentication_input_forms.dart';
+import 'package:first_app/src/screens/authentication/loggedout_screen.dart';
 import 'package:first_app/src/screens/home_screen.dart';
 import 'package:first_app/src/screens/todo_list/add_todo.dart';
 import 'package:first_app/src/services/database.dart';
@@ -44,27 +45,8 @@ class Authentication extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (loginState) {
       case ApplicationLoginState.loggedOut:
-        return Scaffold(
-          body: Container(
-            padding: const EdgeInsets.only(left: 24, bottom: 8),
-            child: Row(
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    startSignUpFlow();
-                  },
-                  child: const Text("SignUp"),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    startSignInFlow();
-                  },
-                  child: const Text("SignIn"),
-                ),
-              ],
-            ),
-          ),
-        );
+        return LoggedOutScreen(startSignInFlow: startSignInFlow, startSignUpFlow: startSignUpFlow,); 
+
 
       case ApplicationLoginState.signUp:
         return SignUpForm(
