@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AddTodo extends StatefulWidget {
-  const AddTodo({Key? key, required this.getUser}) : super(key: key);
+  const AddTodo({Key? key, required this.getUser, required this.backToMainPage})
+      : super(key: key);
   final User? Function() getUser;
+  final Function() backToMainPage;
 
   @override
   State<AddTodo> createState() => _AddTodoState();
@@ -20,20 +22,38 @@ class _AddTodoState extends State<AddTodo> {
 
   @override
   Widget build(BuildContext context) {
-    final databaseProvider = Provider.of<Database>(context);
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.add, size: 30),
-            onPressed: () {
-              print("pressed");
-              databaseProvider.addEntry(
-                  TodoEntry(
-                      checked: false,
-                      title: titleController.text,
-                      description: descriptionController.text,
-                      uid: DateTime.now().toString()),
-                  widget.getUser()!.uid.toString());
-            }),
+        floatingActionButton: Row(
+          children: [
+            Expanded(
+                child: Container(
+                    padding: EdgeInsets.only(left: 50),
+                    child: GestureDetector(
+                      child: Text("Cancel"),
+                      onTap: widget.backToMainPage,
+                    ))),
+            FloatingActionButton(
+                child: Icon(Icons.add, size: 30),
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    try {
+                      final databaseProvider =
+                          Provider.of<Database>(context, listen: false);
+                      databaseProvider.addEntry(
+                          TodoEntry(
+                              checked: false,
+                              title: titleController.text,
+                              description: descriptionController.text,
+                              uid: DateTime.now().toString()),
+                          widget.getUser()!.uid.toString());
+                      widget.backToMainPage();
+                    } catch (e) {
+                      // TODO add errors
+                    }
+                  }
+                }),
+          ],
+        ),
         body: SafeArea(
           child: Column(
             children: [

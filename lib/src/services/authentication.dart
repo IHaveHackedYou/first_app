@@ -31,7 +31,6 @@ class AuthenticationState extends ChangeNotifier {
 
   void startSignUpFlow() {
     _loginState = ApplicationLoginState.signUp;
-    print("change to sign up");
     notifyListeners();
   }
 
@@ -74,8 +73,18 @@ class AuthenticationState extends ChangeNotifier {
     }
   }
 
-  User? getUser(){
+  User? getUser() {
     return FirebaseAuth.instance.currentUser;
+  }
+
+  void startAddingTask() {
+    _loginState = ApplicationLoginState.addTask;
+    notifyListeners();
+  }
+
+  void backToMainPage(){
+    _loginState = ApplicationLoginState.loggedInMainPage;
+    notifyListeners();
   }
 
   void signOut() {

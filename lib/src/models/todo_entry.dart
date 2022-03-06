@@ -7,7 +7,7 @@ class TodoEntry {
   String uid;
 
   Map<String, dynamic> createMap() {
-    return {"checked": checked, "title": title, "description": description};
+    return {"checked": checked, "title": title, "description": description, "uid": uid};
   }
 
   TodoEntry.fromFirestore(Map<String, dynamic> firestoreMap)

@@ -21,6 +21,8 @@ class ScreenManager extends StatelessWidget {
               registerAccount: appState.registerAccount,
               signOut: appState.signOut,
               getUser: appState.getUser,
+              startAddingTask: appState.startAddingTask,
+              backToMainPage: appState.backToMainPage,
             ));
   }
 }

@@ -3,7 +3,9 @@ import 'package:first_app/src/consts/enums.dart';
 import 'package:first_app/src/screens/authentication/authentication_input_forms.dart';
 import 'package:first_app/src/screens/home_screen.dart';
 import 'package:first_app/src/screens/todo_list/add_todo.dart';
+import 'package:first_app/src/services/database.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 // import 'widgets.dart';
 
@@ -19,6 +21,8 @@ class Authentication extends StatelessWidget {
     required this.signOut,
     required this.startSignInFlow,
     required this.getUser,
+    required this.startAddingTask,
+    required this.backToMainPage,
   });
 
   final ApplicationLoginState loginState;
@@ -33,6 +37,8 @@ class Authentication extends StatelessWidget {
       void Function(Exception e) error) registerAccount;
   final void Function() signOut;
   final User? Function() getUser;
+  final void Function() startAddingTask;
+  final void Function() backToMainPage;
 
   @override
   Widget build(BuildContext context) {
@@ -92,10 +98,23 @@ class Authentication extends StatelessWidget {
         );
 
       case ApplicationLoginState.loggedInMainPage:
-        return HomeScreen(
-          signOut: signOut,
-          getUser: getUser,
+        return MultiProvider(
+          providers: [ChangeNotifierProvider.value(value: Database())],
+          child: HomeScreen(
+            signOut: signOut,
+            getUser: getUser,
+            startAddingTask: startAddingTask,
+          ),
         );
+
+      case ApplicationLoginState.addTask:
+        return MultiProvider(
+            providers: [ChangeNotifierProvider.value(value: Database())],
+            child: AddTodo(
+              getUser: getUser,
+              backToMainPage: backToMainPage,
+            ));
+
       default:
         return Scaffold(
           body: Row(
