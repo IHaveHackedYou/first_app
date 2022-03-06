@@ -12,4 +12,15 @@ class InputDecorations {
         enabledBorder:
             OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
       );
+
+  static InputDecoration normalInputField(
+          String labelText, BuildContext context) =>
+      InputDecoration(
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+        labelText: labelText,
+        filled: true,
+        enabledBorder:
+            OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+      );
 }
